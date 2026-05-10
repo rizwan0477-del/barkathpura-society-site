@@ -138,13 +138,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+/* 🔥 YOUR FIREBASE CONFIG (replace this) */
 const firebaseConfig = {
-apiKey: "YOUR_KEY",
-authDomain: "YOUR_DOMAIN",
-projectId: "YOUR_ID",
-storageBucket: "YOUR_BUCKET",
-messagingSenderId: "YOUR_SENDER",
-appId: "YOUR_APPID"
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_AUTH_DOMAIN",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_STORAGE_BUCKET",
+messagingSenderId: "YOUR_SENDER_ID",
+appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -170,28 +171,28 @@ await signOut(auth);
 /* ADD MEMBER */
 window.addMember = async function(){
 await addDoc(collection(db,"members"),{
-name:name.value,
-phone:phone.value,
-email:email.value,
-address:address.value,
+name:document.getElementById("name").value,
+phone:document.getElementById("phone").value,
+email:document.getElementById("email").value,
+address:document.getElementById("address").value,
 time:new Date()
 });
 
-msg.innerText="Member Added ✅";
+document.getElementById("msg").innerText="Member Added ✅";
 }
 
 /* MESSAGE */
 window.sendMsg = async function(){
 await addDoc(collection(db,"messages"),{
-name:cname.value,
-message:cmsg.value,
+name:document.getElementById("cname").value,
+message:document.getElementById("cmsg").value,
 time:new Date()
 });
 
-alert("Sent ✅");
+alert("Message Sent ✅");
 }
 
 </script>
 
 </body>
-</html>                                                                                                                                                                                                                                                    
+</html>
